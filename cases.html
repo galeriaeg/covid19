@@ -14,144 +14,140 @@
 	
 	<body>
 
-	<div id="content">
-	
-		<section id="boxTop">
+		<div id="content">
 		
-			<section id="boxMenu">
-				<img src="imgs/menu.png"  class="icon-menu" />
-				<img src="imgs/notification.png" id="notific" alt="iconNotification" onclick="notification(alt);" class="icon-notificationOff" />
-			</section>
+			<section id="boxTop">
 			
-			
-			<section id="boxHead">
-				<div class="title-h1">COVID-19</div>
-				<div class="box-country">
-					<img class="icon-country" src="imgs/flag-round-250.png"/>
-					<div class="txt-down">IND</div>
-					<img class="icon-down" src="imgs/sort-down.png" />
-				</div>
-			</section>
-			
-			
-			<nav id="boxNav">
-				<ul class="nav-ul">
-					<li onclick="location.href='cases.html'" class="btn btn-active">Cases</li>
-					<li onclick="location.href='prevention.html'" class="btn">Prevention</li>
-					<li class="btn">Hospitals</li>
-				</ul>
-			</nav>
-			<div class="shadow-nav"></div>
-			
-			
-			<section id="boxMaster">
-				<div class="box-radius-shadow">
-					<span class="valueTotal">Global Cases: <strong id="labelTotal"></strong></span>
-					<canvas class="my-chart"></canvas>
-				</div>
+				<section id="boxMenu">
+					<img src="imgs/menu.png"  class="icon-menu" />
+					<img src="imgs/notification.png" id="notific" alt="iconNotification" onclick="notification(alt);" class="icon-notificationOff" />
+				</section>
 				
-				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-				<script src="https://www.gstatic.com/charts/loader.js"></script>
-				<script>
-					// API
-						
-					var xhr = new XMLHttpRequest();
-					xhr.withCredentials = true;
-
-					xhr.addEventListener("readystatechange", function() {
-					  if(this.readyState === 4) {
-						
-						var resultadoApi = JSON.parse(this.responseText);
-						var confirmado = resultadoApi.Global.TotalConfirmed;
-						var recuperados = resultadoApi.Global.TotalRecovered;
-						var mortos = resultadoApi.Global.TotalDeaths;
-						
-						var totalCases = confirmado+recuperados+mortos;
-						
-
-						
-							// grafic
-							google.charts.load('current', {packages: ['corechart']});
-							google.charts.setOnLoadCallback(drawChart);
-							
-							function drawChart() {
-							
-								var ctx = document.getElementsByClassName("my-chart");
-								var myDoughnutChart = new Chart(ctx, {
-									type: 'doughnut',
-									data:{
-										//labels:["Ativos","Curados","Mortes5"],
-										datasets: [{
-											data: [confirmado, recuperados, mortos],
-											backgroundColor:["#FFC259","#55E13A","#FF5959"]
-										}],
-			
-									}
-									
-
-								});
-								
-							}
-							
-							document.getElementById('labelConfirmado').innerHTML=confirmado;
-							document.getElementById('labelRecuperados').innerHTML=recuperados;
-							document.getElementById('labelMortos').innerHTML=mortos;
-							document.getElementById('labelTotal').innerHTML=totalCases;
-							//grafic
-						
-
-					  }
-					});
-
-					xhr.open("GET", "https://api.covid19api.com/summary");
-					xhr.send();
-					// API
-				</script>
-		
-
 				
-			</section>
-			
-			
-			<section id="boxMaster">
-				<div class="box-radius-shadow">
-					<ul class="list-ul">
-						<li class="list-li"><i class="fas fa-square squareActives"></i>Actives Cases<span class="valueCases"><div id="labelConfirmado"></div></span></li>
-						<li class="list-li lineli"><i class="fas fa-square squareDischarge"></i>Discharge<span class="valueCases"><div id="labelRecuperados"></div></span></li>
-						<li class="list-li lineli"><i class="fas fa-square squareDeaths"></i>Deaths<span class="valueCases"><div id="labelMortos"></div></span></li>
-					</ul>
-				</div>
-			</section>
-			
-			
-			<section id="boxMaster">
-				<div class="box-radius-shadow">
+				<section id="boxHead">
+					<div class="title-h1">COVID-19</div>
+					<div class="box-country">
+						<img class="icon-country" src="imgs/flag-round-250.png"/>
+						<div class="txt-down">IND</div>
+						<img class="icon-down" src="imgs/sort-down.png" />
+					</div>
+				</section>
+				
+				
+				<nav id="boxNav">
 					<ul class="nav-ul">
-						<li class="btn">
-							<span class="valueDiagnosed">9000</span><br />Male
-						</li>
-						<li class="btn">
-							<span class="valueDiagnosed">55</span><br />Female
-						</li>
-						<li class="btn">
-							<span class="valueDiagnosed">200</span><br />Cildren
-						</li>
+						<li onclick="location.href='cases.html'" class="btn btn-active">Cases</li>
+						<li onclick="location.href='prevention.html'" class="btn">Prevention</li>
+						<li class="btn">Hospitals</li>
 					</ul>
-				</div>
-			</section>	
+				</nav>
+				<div class="shadow-nav"></div>
+				
+				
+				<section id="boxMaster">
+					<div class="box-radius-shadow">
+						<span class="valueTotal">Global Cases: <strong id="labelTotal"></strong></span>
+						<canvas class="my-chart"></canvas>
+					</div>
+					
+					<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+					<script src="https://www.gstatic.com/charts/loader.js"></script>
+					<script>
+						// API
+							
+						var xhr = new XMLHttpRequest();
+						xhr.withCredentials = true;
+
+						xhr.addEventListener("readystatechange", function() {
+						  if(this.readyState === 4) {
+							
+							var resultadoApi = JSON.parse(this.responseText);
+							var confirmado = resultadoApi.Global.TotalConfirmed;
+							var recuperados = resultadoApi.Global.TotalRecovered;
+							var mortos = resultadoApi.Global.TotalDeaths;
+							
+							var totalCases = confirmado+recuperados+mortos;
+							
+
+							
+								// grafic
+								google.charts.load('current', {packages: ['corechart']});
+								google.charts.setOnLoadCallback(drawChart);
+								
+								function drawChart() {
+								
+									var ctx = document.getElementsByClassName("my-chart");
+									var myDoughnutChart = new Chart(ctx, {
+										type: 'doughnut',
+										data:{
+											//labels:["Ativos","Curados","Mortes5"],
+											datasets: [{
+												data: [confirmado, recuperados, mortos],
+												backgroundColor:["#FFC259","#55E13A","#FF5959"]
+											}],
+				
+										}
+										
+
+									});
+									
+								}
+								
+								document.getElementById('labelConfirmado').innerHTML=confirmado;
+								document.getElementById('labelRecuperados').innerHTML=recuperados;
+								document.getElementById('labelMortos').innerHTML=mortos;
+								document.getElementById('labelTotal').innerHTML=totalCases;
+								//grafic
+							
+
+						  }
+						});
+
+						xhr.open("GET", "https://api.covid19api.com/summary");
+						xhr.send();
+						// API
+					</script>
 			
-			<div id="barFooter"></div>
-		
-		</section>
-	
-	
+
+					
+				</section>
+				
+				
+				<section id="boxMaster">
+					<div class="box-radius-shadow">
+						<ul class="list-ul">
+							<li class="list-li"><i class="fas fa-square squareActives"></i>Actives Cases<span class="valueCases"><div id="labelConfirmado"></div></span></li>
+							<li class="list-li lineli"><i class="fas fa-square squareDischarge"></i>Discharge<span class="valueCases"><div id="labelRecuperados"></div></span></li>
+							<li class="list-li lineli"><i class="fas fa-square squareDeaths"></i>Deaths<span class="valueCases"><div id="labelMortos"></div></span></li>
+						</ul>
+					</div>
+				</section>
+				
+				
+				<section id="boxMaster">
+					<div class="box-radius-shadow">
+						<ul class="nav-ul">
+							<li class="btn">
+								<span class="valueDiagnosed">9000</span><br />Male
+							</li>
+							<li class="btn">
+								<span class="valueDiagnosed">55</span><br />Female
+							</li>
+							<li class="btn">
+								<span class="valueDiagnosed">200</span><br />Cildren
+							</li>
+						</ul>
+					</div>
+				</section>	
+				
+				<div id="barFooter"></div>
 			
-	</div>
-
-
+			</section>
 		
+		
+				
+		</div>
 
-	
 
 	</body>
 	
